@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OZB Rekentool</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 600px;
+            margin: 20px auto;
+            padding: 20px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
+        }
+        input, button {
+            padding: 10px;
+            margin: 10px 0;
+            width: 100%;
+            font-size: 16px;
+        }
+        button {
+            background-color: #007BFF;
+            color: #fff;
+            border: none;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <h1>Bereken uw OZB-tarief</h1>
+    <p>Voer hieronder de WOZ-waarde van uw woning in om het OZB-tarief voor 2025 te berekenen. Het tarief is vastgesteld op 0,0728%.</p>
+
+    <label for="woz">WOZ-waarde (â‚¬):</label>
+    <input type="number" id="woz" placeholder="Bijvoorbeeld: 350000" required>
+    
+    <button onclick="berekenOZB()">Bereken OZB</button>
+
+    <h2>Resultaat</h2>
+    <p id="resultaat">Voer een waarde in en klik op 'Bereken OZB' om het resultaat te zien.</p>
+
+    <script>
+        function berekenOZB() {
+            const wozWaarde = document.getElementById('woz').value;
+            const tarief = 0.000728; // OZB-tarief voor 2025
+            if (wozWaarde && wozWaarde > 0) {
+                const ozb = wozWaarde * tarief;
+                document.getElementById('resultaat').textContent = 
+                    `Met een WOZ-waarde van â‚¬${parseFloat(wozWaarde).toLocaleString()} betaalt u â‚¬${ozb.toFixed(2)} aan OZB.`;
+            } else {
+                document.getElementById('resultaat').textContent = 
+                    "Voer een geldige WOZ-waarde in.";
+            }
+        }
+    </script>
+</body>
+</html>
